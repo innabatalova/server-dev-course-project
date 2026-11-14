@@ -1,9 +1,166 @@
-@import 'tailwindcss';
+* {
+    box-sizing: border-box;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, sans-serif;
+    color: #222;
+    background: #fff;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+a {
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+main {
+    flex: 1;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.site-header {
+    border-bottom: .0625rem solid #999;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.logo,
+.header-spacer {
+    width: 7.5rem;
+}
+
+.logo img,
+.logo-placeholder {
+    width: 7.5rem;
+    height: 2rem;
+}
+
+.logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: .0625rem solid #666;
+    font-size: .5625rem;
+    text-align: center;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .75rem;
+}
+
+.nav a {
+    text-decoration: none;
+    padding-bottom: .125rem;
+}
+
+.nav a.active {
+    border-bottom: .125rem solid #222;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 13.75rem;
+    background: #fff;
+    border: .0625rem solid #999;
+    padding: .5rem 0;
+    z-index: 10;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: .375rem 1rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    display: block;
+    border: .0625rem solid #666;
+    padding: 1.5rem;
+    text-decoration: none;
+}
+
+.card.stub {
+    border-style: dashed;
+    color: #777;
+}
+
+.site-footer {
+    background: #eee;
+    border-top: .0625rem solid #999;
+}
+
+.footer-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.footer-cols h3 {
+    margin-top: 0;
+}
+
+.footer-cols ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-cols li {
+    margin-bottom: .375rem;
+}
+
+.footer-bottom {
+    border-top: .0625rem solid #999;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: .875rem;
 }
