@@ -164,3 +164,53 @@ main {
     padding-bottom: .75rem;
     font-size: .875rem;
 }
+
+.feedback-form {
+    max-width: 600px;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.feedback-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.feedback-form fieldset {
+    border: 1px solid #999;
+    padding: 12px;
+}
+
+.feedback-form fieldset label {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.feedback-form input[type="text"],
+.feedback-form input[type="email"],
+.feedback-form textarea,
+.headers-output {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #666;
+    font: inherit;
+}
+
+.headers-output {
+    max-width: 700px;
+    display: block;
+    font-family: monospace;
+}
+
+.feedback-form button {
+    align-self: flex-start;
+    padding: 10px 24px;
+    border: 1px solid #222;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+}
