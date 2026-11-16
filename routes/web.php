@@ -17,5 +17,6 @@ Route::get('/labs/2/edit/{contact?}', [ContactController::class, 'edit']);
 Route::get('/labs/2/delete', [ContactController::class, 'delete']);
 Route::post('/labs/2/contacts', [ContactController::class, 'store']);
 Route::put('/labs/2/contacts/{contact}', [ContactController::class, 'update']);
+Route::delete('/labs/2/contacts/{contact}', [ContactController::class, 'destroy']);
 
 Route::view('/labs/{n}', 'labs.stub')->where('n', '[3-5]');

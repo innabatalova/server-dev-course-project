@@ -40,7 +40,17 @@ class ContactController extends Controller
 
     public function delete()
     {
-        return view('labs.lab2.delete');
+        $contacts = Contact::orderBy('surname')->orderBy('name')->get();
+
+        return view('labs.lab2.delete', compact('contacts'));
+    }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        return redirect('/labs/2/delete')
+            ->with('success', 'Запись с фамилией ' . $contact->surname . ' удалена');
     }
 
     public function store(Request $request)

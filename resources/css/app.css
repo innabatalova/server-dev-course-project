@@ -615,3 +615,20 @@ a.card:hover {
     border-color: var(--primary);
     font-weight: 500;
 }
+
+/* ---------- Лаба 2: кнопки удаления ---------- */
+.contact-links form {
+    margin: 0;
+}
+
+button.contact-link {
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+}
+
+.contact-link.danger:hover {
+    border-color: #d32f2f;
+    color: #b71c1c;
+}
