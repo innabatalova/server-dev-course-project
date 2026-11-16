@@ -19,9 +19,8 @@
                 <li><a href="/labs/1">Лаба 1 — Feedback form</a></li>
                 <li><a href="/labs/2">Лаба 2 — Notebook</a></li>
                 <li><a href="/labs/3">Лаба 3 — Роутинг</a></li>
-                @foreach (range(4, 5) as $n)
-                    <li><a href="/labs/{{ $n }}">Лаба {{ $n }}</a></li>
-                @endforeach
+                <li><a href="/labs/4">Лаба 4 — Представление</a></li>
+                <li><a href="/labs/5">Лаба 5 — </a></li>
             </ul>
         </div>
     </div>

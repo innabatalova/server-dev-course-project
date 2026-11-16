@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Lab1Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GreetingController;
+use App\Http\Controllers\Lab4Controller;
 
 Route::view('/', 'home');
 Route::view('/labs', 'labs.index');
@@ -24,5 +25,7 @@ Route::view('/labs/3', 'labs.lab3.index');
 Route::get('/labs/3/hello/{name}', [GreetingController::class, 'sayHello']);
 Route::get('/labs/3/bye/{name}', [GreetingController::class, 'sayBye']);
 
+Route::view('/labs/4', 'labs.lab4.index');
+Route::get('/labs/4/hello/{name}', [Lab4Controller::class, 'hello']);
 
-Route::view('/labs/{n}', 'labs.stub')->where('n', '[4-5]');
+Route::view('/labs/{n}', 'labs.stub')->where('n', '5');

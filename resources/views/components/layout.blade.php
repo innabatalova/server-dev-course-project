@@ -1,4 +1,4 @@
-@props(['title' => 'Серверная веб-разработка', 'heading' => null])
+@props(['title' => 'Мой блог', 'heading' => null])
 <!DOCTYPE html>
 <html lang="ru">
 <head>
