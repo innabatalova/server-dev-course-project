@@ -17,7 +17,8 @@
             <h3>Лабораторные</h3>
             <ul>
                 <li><a href="/labs/1">Лаба 1 — Feedback form</a></li>
-                @foreach (range(2, 5) as $n)
+                <li><a href="/labs/2">Лаба 2 — Notebook</a></li>
+                @foreach (range(3, 5) as $n)
                     <li><a href="/labs/{{ $n }}">Лаба {{ $n }}</a></li>
                 @endforeach
             </ul>

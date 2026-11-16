@@ -18,7 +18,8 @@
             <div class="dropdown-menu">
                 <a href="/labs">Все лабораторные</a>
                 <a href="/labs/1">Лаба 1 — Feedback form</a>
-                @foreach (range(2, 5) as $n)
+                <a href="/labs/2">Лаба 2 — Notebook</a>
+                @foreach (range(3, 5) as $n)
                     <a href="/labs/{{ $n }}">Лаба {{ $n }}</a>
                 @endforeach
             </div>
