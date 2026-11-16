@@ -544,3 +544,45 @@ a.card:hover {
     color: #fff;
     background: var(--primary);
 }
+
+.feedback-form input[type="date"],
+.feedback-form input[type="tel"],
+.feedback-form select {
+    width: 100%;
+    padding: 0.75rem 0.875rem;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.feedback-form input[type="date"]:focus,
+.feedback-form input[type="tel"]:focus,
+.feedback-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+/* ---------- Сообщения ---------- */
+.alert {
+    max-width: 37.5rem;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+}
+
+.alert.success {
+    color: #1b5e20;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+}
+
+.alert.error {
+    color: #b71c1c;
+    background: #ffebee;
+    border: 1px solid #ef9a9a;
+}

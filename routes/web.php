@@ -15,5 +15,6 @@ Route::get('/labs/2', [ContactController::class, 'index']);
 Route::get('/labs/2/create', [ContactController::class, 'create']);
 Route::get('/labs/2/edit', [ContactController::class, 'edit']);
 Route::get('/labs/2/delete', [ContactController::class, 'delete']);
+Route::post('/labs/2/contacts', [ContactController::class, 'store']);
 
 Route::view('/labs/{n}', 'labs.stub')->where('n', '[3-5]');
