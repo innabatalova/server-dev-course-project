@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Lab1Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GreetingController;
 
 Route::view('/', 'home');
 Route::view('/labs', 'labs.index');
@@ -19,4 +20,9 @@ Route::post('/labs/2/contacts', [ContactController::class, 'store']);
 Route::put('/labs/2/contacts/{contact}', [ContactController::class, 'update']);
 Route::delete('/labs/2/contacts/{contact}', [ContactController::class, 'destroy']);
 
-Route::view('/labs/{n}', 'labs.stub')->where('n', '[3-5]');
+Route::view('/labs/3', 'labs.lab3.index');
+Route::get('/labs/3/hello/{name}', [GreetingController::class, 'sayHello']);
+Route::get('/labs/3/bye/{name}', [GreetingController::class, 'sayBye']);
+
+
+Route::view('/labs/{n}', 'labs.stub')->where('n', '[4-5]');
