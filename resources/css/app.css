@@ -586,3 +586,32 @@ a.card:hover {
     background: #ffebee;
     border: 1px solid #ef9a9a;
 }
+
+/* ---------- Лаба 2: список записей ---------- */
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-link {
+    padding: 0.5rem 0.75rem;
+    color: var(--text);
+    background: var(--paper);
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+}
+
+.contact-link:hover {
+    border-color: var(--primary-light);
+    text-decoration: none;
+}
+
+.contact-link.current {
+    color: var(--primary-dark);
+    background: #e3f2fd;
+    border-color: var(--primary);
+    font-weight: 500;
+}

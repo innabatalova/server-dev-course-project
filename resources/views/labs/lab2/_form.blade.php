@@ -1,5 +1,8 @@
 <form class="feedback-form" method="post" action="{{ $action }}">
     @csrf
+    @if ($contact)
+        @method('PUT')
+    @endif
 
     <label>Фамилия
         <input type="text" name="surname" value="{{ old('surname', $contact?->surname) }}" required>

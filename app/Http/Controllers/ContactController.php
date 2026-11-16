@@ -11,6 +11,7 @@ class ContactController extends Controller
         'surname' => 'surname',
         'birth'   => 'birth_date',
     ];
+
     public function index()
     {
         $sort = request()->query('sort');
@@ -23,23 +24,44 @@ class ContactController extends Controller
 
         return view('labs.lab2.index', compact('contacts', 'sort'));
     }
+
     public function create()
     {
         return view('labs.lab2.create');
     }
 
-    public function edit()
+    public function edit(?Contact $contact = null)
     {
-        return view('labs.lab2.edit');
+        $contacts = Contact::orderBy('surname')->orderBy('name')->get();
+        $contact ??= $contacts->first();
+
+        return view('labs.lab2.edit', compact('contacts', 'contact'));
     }
 
     public function delete()
     {
         return view('labs.lab2.delete');
     }
+
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $data = $this->validated($request);
+
+        Contact::create($data);
+
+        return redirect('/labs/2/create')->with('success', 'Запись добавлена');
+    }
+
+    public function update(Request $request, Contact $contact)
+    {
+        $contact->update($this->validated($request));
+
+        return redirect('/labs/2/edit/' . $contact->id)->with('success', 'Запись обновлена');
+    }
+
+    private function validated(Request $request): array
+    {
+        return $request->validate([
             'surname'    => ['required', 'string', 'max:100'],
             'name'       => ['required', 'string', 'max:100'],
             'patronymic' => ['nullable', 'string', 'max:100'],
@@ -50,9 +72,5 @@ class ContactController extends Controller
             'email'      => ['required', 'email', 'max:255'],
             'comment'    => ['nullable', 'string'],
         ]);
-
-        Contact::create($data);
-
-        return redirect('/labs/2/create')->with('success', 'Запись добавлена');
     }
 }
