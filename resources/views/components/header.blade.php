@@ -21,7 +21,7 @@
                 <a href="/labs/2">Лаба 2 — Notebook</a>
                 <a href="/labs/3">Лаба 3 — Роутинг</a>
                 <a href="/labs/4">Лаба 4 — Представление</a>
-                <a href="/labs/5">Лаба 5 — </a>
+                <a href="/labs/5">Лаба 5 — Статьи блога</a>
             </div>
         </div>
         <a href="/course" @class(['active' => request()->is('course*')])>Курсовой проект</a>
