@@ -9,7 +9,6 @@ use App\Http\Controllers\ArticlesController;
 
 Route::view('/', 'home');
 Route::view('/labs', 'labs.index');
-Route::view('/course', 'course');
 
 Route::view('/labs/1', 'labs.lab1.form');
 Route::get('/labs/1/headers', [Lab1Controller::class, 'headers']);
@@ -31,3 +30,6 @@ Route::get('/labs/4/hello/{name}', [Lab4Controller::class, 'hello']);
 
 Route::get('/labs/5', [ArticlesController::class, 'index']);
 Route::get('/labs/5/articles/{id}', [ArticlesController::class, 'show']);
+
+Route::view('/bank', 'bank.home');
+Route::redirect('/course', '/bank');
