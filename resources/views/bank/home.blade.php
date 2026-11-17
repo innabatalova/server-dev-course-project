@@ -46,8 +46,15 @@
     </section>
 
     <section class="container bank-section">
-        <h2>ФинГид</h2>
+        <div class="bank-section-head">
+            <h2>ФинГид</h2>
+            <a class="bank-link" href="/bank/articles">Все статьи</a>
+        </div>
         <p class="bank-section-text">Короткие статьи о вкладах, кредитной нагрузке, инфляции и защите от мошенников.</p>
-        <a class="bank-link" href="/bank/articles">Все статьи</a>
+        <div class="bank-articles">
+            @foreach ($latest as $article)
+                @include('bank.articles._card', ['article' => $article])
+            @endforeach
+        </div>
     </section>
 </x-bank-layout>

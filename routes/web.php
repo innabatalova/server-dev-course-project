@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\Lab4Controller;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\FinArticleController;
 
 Route::view('/', 'home');
 Route::view('/labs', 'labs.index');
@@ -31,5 +33,12 @@ Route::get('/labs/4/hello/{name}', [Lab4Controller::class, 'hello']);
 Route::get('/labs/5', [ArticlesController::class, 'index']);
 Route::get('/labs/5/articles/{id}', [ArticlesController::class, 'show']);
 
-Route::view('/bank', 'bank.home');
 Route::redirect('/course', '/bank');
+Route::get('/bank', [BankController::class, 'home']);
+Route::get('/bank/articles', [FinArticleController::class, 'index']);
+Route::get('/bank/articles/create', [FinArticleController::class, 'create']);
+Route::post('/bank/articles', [FinArticleController::class, 'store']);
+Route::get('/bank/articles/{finArticle}', [FinArticleController::class, 'show']);
+Route::get('/bank/articles/{finArticle}/edit', [FinArticleController::class, 'edit']);
+Route::put('/bank/articles/{finArticle}', [FinArticleController::class, 'update']);
+Route::delete('/bank/articles/{finArticle}', [FinArticleController::class, 'destroy']);
