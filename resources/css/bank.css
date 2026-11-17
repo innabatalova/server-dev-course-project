@@ -117,7 +117,7 @@
 .bank-section-text { max-width: 40rem; margin: 0 0 1rem; color: var(--text-secondary); }
 .bank main > .container:last-child { padding-bottom: 3.5rem; }
 
-.bank-products { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.5rem; }
+.bank-products { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); gap: 1.5rem; }
 .bank-product {
     position: relative;
     padding: 1.75rem;
@@ -136,7 +136,7 @@
 .bank-footer { margin-top: 3rem; background: #1e1442; color: #e9e1ff; }
 .bank .bank-footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: 2rem;
     padding-top: 2.5rem;
     padding-bottom: 2rem;
@@ -191,7 +191,9 @@
 
 /* Поиск и категории */
 .bank-toolbar { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
-.bank-search { flex: 1; }
+.bank-search { flex: 1; min-width: 0; }
+.bank-toolbar > * { min-width: 0; }
+.bank-article-card { min-width: 0; overflow-wrap: anywhere; }
 .bank-search input, .bank-field input, .bank-field select, .bank-field textarea {
     width: 100%;
     padding: 0.75rem 1rem;
@@ -214,7 +216,7 @@
 .bank .bank-chip.active { color: #fff; background: var(--primary); border-color: var(--primary); }
 
 /* Карточки статей */
-.bank-articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 1.5rem; }
+.bank-articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr)); gap: 1.5rem; }
 .bank-article-card { display: flex; flex-direction: column; padding: 1.5rem; background: var(--paper); border: 1px solid var(--divider); border-radius: 1.25rem; transition: border-color .15s, box-shadow .15s; }
 .bank-article-card:hover { border-color: var(--primary-light); box-shadow: 0 6px 20px rgba(91, 43, 224, .1); }
 .bank-article-card h3 { margin: 0.75rem 0 0.5rem; font-size: 1.1875rem; font-weight: 500; line-height: 1.3; }
@@ -352,4 +354,12 @@
 @media (prefers-reduced-motion: reduce) {
     .bank-calc-result { transition: none; }
     .bank-skeleton-line { animation: none; }
+}
+
+/* Живой поиск: лёгкое затемнение списка, пока идёт запрос */
+#articles-results { transition: opacity .15s; }
+#articles-results.is-loading { opacity: .55; }
+
+@media (prefers-reduced-motion: reduce) {
+    #articles-results { transition: none; }
 }

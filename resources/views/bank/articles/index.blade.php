@@ -12,7 +12,7 @@
             <div class="bank-alert bank-alert-success" role="status">{{ session('success') }}</div>
         @endif
 
-        <form class="bank-toolbar" method="get" action="/bank/articles" role="search" id="article-filter">
+        <form class="bank-toolbar" method="get" action="/bank/articles" role="search" id="article-filter" data-article-filter>
             @if ($category)
                 <input type="hidden" name="category" value="{{ $category }}">
             @endif
@@ -23,14 +23,14 @@
             <button class="bank-btn bank-btn-primary" type="submit">Найти</button>
         </form>
 
-        <nav class="bank-chips" aria-label="Категории статей">
-            <a href="/bank/articles{{ $q !== '' ? '?' . http_build_query(['q' => $q]) : '' }}" @class(['bank-chip', 'active' => ! $category])>Все</a>
+        <nav class="bank-chips" aria-label="Категории статей" data-live="chips">
+            <a href="/bank/articles{{ $q !== '' ? '?' . http_build_query(['q' => $q]) : '' }}" @class(['bank-chip', 'active' => ! $category]) data-category="">Все</a>
             @foreach ($categories as $cat)
                 <a href="/bank/articles?{{ http_build_query(array_filter(['q' => $q, 'category' => $cat->slug])) }}" @class(['bank-chip', 'active' => $category === $cat->slug]) data-category="{{ $cat->slug }}">{{ $cat->name }}</a>
             @endforeach
         </nav>
 
-        <div id="articles-results">
+        <div id="articles-results" data-live="results" aria-live="polite">
             @if ($articles->isEmpty())
                 <div class="bank-empty">
                     <p>Ничего не найдено. Измените запрос или выберите другую категорию.</p>
@@ -52,5 +52,7 @@
                 @endif
             @endif
         </div>
+
+        @include('bank.articles._live')
     </section>
 </x-bank-layout>
