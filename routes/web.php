@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\Lab4Controller;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\FinArticleController;
+use App\Http\Controllers\DepositCalculatorController;
+use App\Http\Controllers\CreditCalculatorController;
 
 Route::view('/', 'home');
 Route::view('/labs', 'labs.index');
-Route::view('/course', 'course');
 
 Route::view('/labs/1', 'labs.lab1.form');
 Route::get('/labs/1/headers', [Lab1Controller::class, 'headers']);
@@ -31,3 +34,15 @@ Route::get('/labs/4/hello/{name}', [Lab4Controller::class, 'hello']);
 
 Route::get('/labs/5', [ArticlesController::class, 'index']);
 Route::get('/labs/5/articles/{id}', [ArticlesController::class, 'show']);
+
+Route::redirect('/course', '/bank');
+Route::get('/bank', [BankController::class, 'home']);
+Route::get('/bank/articles', [FinArticleController::class, 'index']);
+Route::get('/bank/articles/create', [FinArticleController::class, 'create']);
+Route::post('/bank/articles', [FinArticleController::class, 'store']);
+Route::get('/bank/articles/{finArticle}', [FinArticleController::class, 'show']);
+Route::get('/bank/articles/{finArticle}/edit', [FinArticleController::class, 'edit']);
+Route::put('/bank/articles/{finArticle}', [FinArticleController::class, 'update']);
+Route::delete('/bank/articles/{finArticle}', [FinArticleController::class, 'destroy']);
+Route::get('/bank/calculator/deposit', [DepositCalculatorController::class, 'show']);
+Route::get('/bank/calculator/credit', [CreditCalculatorController::class, 'show']);
