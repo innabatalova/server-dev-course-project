@@ -88,6 +88,18 @@ class FinArticleController extends Controller
             'announce' => 'required|string|max:300',
             'body' => 'required|string|min:50',
             'published_at' => 'required|date|before_or_equal:today',
+        ], [
+            'title.required' => 'Введите заголовок статьи.',
+            'title.max' => 'Заголовок не должен быть длиннее 200 символов.',
+            'fin_category_id.required' => 'Выберите категорию.',
+            'fin_category_id.exists' => 'Выбрана несуществующая категория.',
+            'announce.required' => 'Напишите короткий анонс.',
+            'announce.max' => 'Анонс не должен быть длиннее 300 символов.',
+            'body.required' => 'Введите текст статьи.',
+            'body.min' => 'Текст статьи должен быть не короче 50 символов.',
+            'published_at.required' => 'Укажите дату публикации.',
+            'published_at.date' => 'Дата указана неверно.',
+            'published_at.before_or_equal' => 'Дата публикации не может быть в будущем.',
         ]);
     }
 
