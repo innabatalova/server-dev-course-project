@@ -9,6 +9,7 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\FinArticleController;
 use App\Http\Controllers\DepositCalculatorController;
+use App\Http\Controllers\CreditCalculatorController;
 
 Route::view('/', 'home');
 Route::view('/labs', 'labs.index');
@@ -44,4 +45,4 @@ Route::get('/bank/articles/{finArticle}/edit', [FinArticleController::class, 'ed
 Route::put('/bank/articles/{finArticle}', [FinArticleController::class, 'update']);
 Route::delete('/bank/articles/{finArticle}', [FinArticleController::class, 'destroy']);
 Route::get('/bank/calculator/deposit', [DepositCalculatorController::class, 'show']);
-
+Route::get('/bank/calculator/credit', [CreditCalculatorController::class, 'show']);
