@@ -273,3 +273,83 @@
 @media (max-width: 52em) {
     .bank-calc { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Ползунки и обновление результата без перезагрузки */
+.bank-range {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    --fill: 0%;
+}
+/* Ползунок лежит внутри .bank-field, поэтому на него действуют стили текстовых полей
+   (рамка, отступы, подсветка при фокусе). Для ползунка всё это отключаем,
+   а фокус показываем на самом бегунке. */
+.bank-field input.bank-range,
+.bank-field input.bank-range:hover,
+.bank-field input.bank-range:focus,
+.bank-field input.bank-range:focus-visible {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+}
+.bank-range::-webkit-slider-runnable-track {
+    height: 0.375rem;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--primary) var(--fill), var(--divider) var(--fill));
+}
+.bank-range::-moz-range-track { height: 0.375rem; border-radius: 999px; background: var(--divider); }
+.bank-range::-moz-range-progress { height: 0.375rem; border-radius: 999px; background: var(--primary); }
+.bank-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.375rem;
+    height: 1.375rem;
+    margin-top: -0.5rem;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 1px 4px rgba(30, 20, 66, .35);
+    transition: box-shadow .15s;
+}
+.bank-range::-moz-range-thumb {
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 1px 4px rgba(30, 20, 66, .35);
+}
+.bank-range:hover::-webkit-slider-thumb { background: var(--primary-dark); }
+.bank-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(139, 99, 255, .45); }
+.bank-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba(139, 99, 255, .45); }
+.bank-calc-result { transition: opacity .15s; }
+.bank-calc-result.is-loading { opacity: .55; }
+
+/* Скелетон: показывается вместо результата, пока параметры изменены, а расчёт не обновлён */
+.bank-skeleton-line {
+    display: block;
+    height: 1rem;
+    margin-bottom: 0.875rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(90deg, rgba(255,255,255,.18) 25%, rgba(255,255,255,.38) 50%, rgba(255,255,255,.18) 75%) 0 0 / 200% 100%;
+    animation: bank-shimmer 1.4s linear infinite;
+}
+.bank-skeleton-big { height: 2.75rem; margin-bottom: 1.5rem; }
+.bank-skeleton-note { margin: 0.5rem 0 0; font-size: 0.9375rem; opacity: .9; }
+.bank-skeleton-table { padding: 1.25rem; background: var(--paper); border: 1px solid var(--divider); border-radius: 1.25rem; }
+.bank-skeleton-table .bank-skeleton-line { margin-bottom: 0.75rem; background: linear-gradient(90deg, #efe9ff 25%, #e1d8fa 50%, #efe9ff 75%) 0 0 / 200% 100%; }
+.bank-skeleton-row { height: 1.5rem; width: 100%; }
+@keyframes bank-shimmer { to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .bank-calc-result { transition: none; }
+    .bank-skeleton-line { animation: none; }
+}

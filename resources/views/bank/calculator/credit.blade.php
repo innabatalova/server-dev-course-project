@@ -11,7 +11,7 @@
         </p>
 
         <div class="bank-calc">
-            <form class="bank-form bank-calc-form" method="get" action="/bank/calculator/credit" novalidate>
+            <form class="bank-form bank-calc-form" data-live-form method="get" action="/bank/calculator/credit" novalidate>
                 @if ($fieldErrors)
                     <div class="bank-alert bank-alert-error" role="alert">Расчёт не выполнен. Проверьте поля, отмеченные ниже.</div>
                 @endif
@@ -19,6 +19,9 @@
                 <div class="bank-field">
                     <label for="amount">Сумма кредита, ₽</label>
                     <input id="amount" type="text" inputmode="decimal" name="amount" value="{{ $input['amount'] }}" autocomplete="off">
+                    <input class="bank-range" type="range" data-sync="amount" aria-label="Сумма, ползунок"
+                           min="{{ $config['min_amount'] }}" max="{{ $config['max_amount'] }}" step="10000"
+                           value="{{ is_numeric($input['amount']) ? max($config['min_amount'], min($config['max_amount'], $input['amount'])) : $config['min_amount'] }}">
                     <p class="bank-hint">От {{ $int($config['min_amount']) }} до {{ $int($config['max_amount']) }} ₽</p>
                     @if ($err('amount')) <p class="bank-error">{{ $err('amount') }}</p> @endif
                 </div>
@@ -26,6 +29,9 @@
                 <div class="bank-field">
                     <label for="months">Срок, месяцев</label>
                     <input id="months" type="text" inputmode="numeric" name="months" value="{{ $input['months'] }}" autocomplete="off">
+                    <input class="bank-range" type="range" data-sync="months" aria-label="Срок, ползунок"
+                           min="{{ $config['min_term'] }}" max="{{ $config['max_term'] }}" step="1"
+                           value="{{ is_numeric($input['months']) ? max($config['min_term'], min($config['max_term'], (int) $input['months'])) : $config['min_term'] }}">
                     <p class="bank-hint">От {{ $config['min_term'] }} до {{ $config['max_term'] }} месяцев</p>
                     @if ($err('months')) <p class="bank-error">{{ $err('months') }}</p> @endif
                 </div>
@@ -33,7 +39,7 @@
                 <button class="bank-btn bank-btn-primary" type="submit">Рассчитать</button>
             </form>
 
-            <div class="bank-calc-result">
+            <div class="bank-calc-result" data-live="side" aria-live="polite">
                 @if ($result)
                     <div class="bank-result-card">
                         <p class="bank-result-label">Ежемесячный платёж</p>
@@ -53,6 +59,7 @@
             </div>
         </div>
 
+        <div data-live="table">
         @if ($result)
             <h2 class="bank-calc-title">График платежей</h2>
             <div class="bank-table-wrap">
@@ -81,5 +88,8 @@
             </div>
             <p class="bank-note">Расчёт предварительный и не является публичной офертой. Итоговые условия определяются договором.</p>
         @endif
+        </div>
+
+        @include('bank.calculator._live')
     </section>
 </x-bank-layout>
